@@ -30,6 +30,7 @@ var modal = document.getElementById("myModal");
 
 var newnote = document.getElementsByClassName('new-note')[0];
 newnote.onclick = function() {
+  // console.log('hi');
   noteform.action='/notes/new';
   // console.dir(document.activeElement);
   document.getElementById('note-id').value = 'none';
@@ -122,3 +123,7 @@ function getDateAndTime(){
 
   return currDate;
 }
+
+// document.getElementById("search-box").addEventListener("keyup", function(event) {
+//     document.getElementById("search-form").submit();
+// });

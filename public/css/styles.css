@@ -12,11 +12,13 @@
 
 #new-note-symbol{
   font-size: 100px;
-
+  
+  
 }
 .flexbox-item{
     border-radius: 20px;
     background-color: #ffeead;
+    word-wrap: break-word; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -26,7 +28,8 @@
 }
 
 .note-title{
-    font-size: 35px;
+  font-weight: 500;
+    font-size: 25px;
     background-color: #96ceb4;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -321,6 +324,7 @@
     margin-top: 120px;
     display: grid;
     grid-gap: 20px;
+    grid-auto-rows: 1fr;
     /* grid-template-rows: repeat(auto-fit, minmax(400px, 1fr)); */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     

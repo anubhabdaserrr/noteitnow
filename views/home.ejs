@@ -7,7 +7,7 @@
             <div></div>
             <div></div>
         </div>
-        <% for(let note of data.notes.slice().reverse()){ %>
+        <% for(let note of data.slice().reverse()){ %>
         <div class="flexbox-item" id= <%= note._id %> >
             <div class="note-title"><%= note.title %></div>
             <div class="note-date"><%= note.dateModified %></div>
@@ -19,3 +19,4 @@
     </div>
 
 <%- include('footer', {data: data}); -%>
+

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteItNow</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     
 </head>
@@ -31,8 +31,8 @@
         <div class="cancel-icon">
            <span class="fas fa-times"></span>
         </div>
-        <form action="#">
-           <input type="search" class="search-data" placeholder="Search notes" required>
+        <form id="search-form" action="/notes/search" method='GET'>
+           <input id="search-box" type="search" name="searchQuery" class="search-data" placeholder="Search notes" required>
            <button type="submit" class="fas fa-search"></button>
         </form>
      </nav>
