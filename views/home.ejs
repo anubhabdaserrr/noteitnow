@@ -1,6 +1,13 @@
 <%- include('header', {data: data}); -%>
-
+    <% if(success | success.length){ %>
+    <div id="flashModal" class="flash-modal">
+    <div class="flash-modal-content">
+    <%= success %>
+    </div>
+    </div>
+    <% } %>
     <div class="flexbox-container">
+        
         <div class="new-note">
             <br><br><br>New Note<br><span id="new-note-symbol">+</span>
             <div></div>
@@ -16,6 +23,7 @@
             </div>
         </div>
         <% } %>
+        
     </div>
 
 <%- include('footer', {data: data}); -%>

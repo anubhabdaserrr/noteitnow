@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >NoteItNow</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/css/flashmodal.css" >
+
+</head>
+<body style="background-color: #ffeead; color: #3d7058; overflow: hidden;">
+    <% if(success | success.length){ %>
+        <div id="flashModal" class="flash-modal">
+        <div class="flash-modal-content">
+        <%= success %>
+        </div>
+        </div>
+    <% } %>
+    <% if(error | error.length){ %>
+        <div id="flashModal" class="flash-modal">
+        <div class="flash-modal-content">
+        <%= error %>
+        </div>
+        </div>
+    <% } %>
+    <div class="row">
+        <div class="col" style="padding-left: 160px; padding-top:160px;margin-left: 50px;">
+            <div><img
+                src="/imgs/noteicon.svg"
+                alt="Note Icon"
+                height="400"
+                width="400" style="align-content: center;"/></div>
+            <div class="h1" style="font-size: 100px;">NoteItNow</div><hr style="margin-right: 310px;">
+            <div style="font-size: 22px; font-weight: bold;">An app for all your note-taking needs !</div>
+        </div>
+        <div class="col">
+
+        <h1 style="padding-left: 120px; margin-top: 200px; font-size: 60px;">Login</h1>
+        <div style="padding-left: 120px; font-size:23px;">New User ?<form action="/register" method="GET" style="display: inline;" >
+            <button class = "btn btn-link">Register</button>
+        </form></div>
+        <form action="/login" method="POST"  style="padding: 10px 130px 150px 120px;font-size: 25px;">
+            
+            <div>
+                <label class="form-label" style="margin-top: 20px;" for="username">Username</label>
+                <input class="form-control" autocomplete="off" type="text" id="username" name="username" required>   
+            </div>
+            <!-- <div>
+                <label class="form-label" style="margin-top: 20px;" for="email">Email</label>
+                <input class="form-control" autocomplete="off" type="email" id="email" name="email" required>   
+            </div> -->
+            <div>
+                <label class="form-label" style="margin-top: 20px;" for="password">Password</label>
+                <input class="form-control" autocomplete="off" type="password" id="password" name="password" required>   
+            </div>
+            <button class = "btn btn-success" style="margin-top: 20px;">Sign in</button>
+        </form>
+        </div>
+    </div>
+    <script>
+
+let disappear = ()=>{
+  flashmodal.style.display = "none";}
+var flashmodal = document.getElementById("flashModal");
+console.log(flashmodal)
+window.setTimeout(disappear, 1500);
+    </script>
+</body>
+</html>

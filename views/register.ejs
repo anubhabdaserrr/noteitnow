@@ -28,13 +28,26 @@
         </div>
         <div class="col">
 
-        <h1 style="padding-left: 10px; margin-top: 500px; font-size: 60px;">There's nothing here.</h1>
-        <div style="padding-left: 10px; font-size: 25px;"> Looks like you've landed on the wrong page.</div><br>
-        <div style="padding-left: 10px; font-size:23px;"><form action="/login" method="GET" style="display: inline;" >
-            <button class = "btn btn-success btn-lg">Login</button></form><form action="/register" method="GET" style="display: inline;" >
-              <button class = "btn btn-success btn-lg">Register</button>
+        <h1 style="padding-left: 120px; margin-top: 200px; font-size: 60px;">Create an account</h1>
+        <div style="padding-left: 120px; font-size:23px;">Already registered ?<form action="/login" method="GET" style="display: inline;" >
+            <button class = "btn btn-link">Login</button>
         </form></div>
-        
+        <form action="/register" method="POST"  style="padding: 10px 130px 150px 120px;font-size: 25px;">
+            
+            <div>
+                <label class="form-label" style="margin-top: 20px;" for="username">Username</label>
+                <input class="form-control" autocomplete="off" type="text" id="username" name="username" required>   
+            </div>
+            <div>
+                <label class="form-label" style="margin-top: 20px;" for="email">Email</label>
+                <input class="form-control" autocomplete="off" type="email" id="email" name="email" required>   
+            </div>
+            <div>
+                <label class="form-label" style="margin-top: 20px;" for="password">Password</label>
+                <input class="form-control" autocomplete="off" type="password" id="password" name="password" required>   
+            </div>
+            <button class = "btn btn-success" style="margin-top: 20px;">Sign up</button>
+        </form>
         </div>
     </div>
 </body>

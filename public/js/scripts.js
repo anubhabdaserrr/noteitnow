@@ -127,3 +127,9 @@ function getDateAndTime(){
 // document.getElementById("search-box").addEventListener("keyup", function(event) {
 //     document.getElementById("search-form").submit();
 // });
+
+let disappear = ()=>{
+  flashmodal.style.display = "none";}
+var flashmodal = document.getElementById("flashModal");
+console.log(flashmodal)
+window.setTimeout(disappear, 1500);
