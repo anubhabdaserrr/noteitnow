@@ -30,10 +30,20 @@
 
         <h1 style="padding-left: 10px; margin-top: 500px; font-size: 60px;">About us.</h1>
         <div style="padding-left: 10px; font-size: 25px;"> We're trying to build an app for all your note-taking needs.</div><br>
-        <div style="padding-left: 10px; font-size:23px;"><form action="/login" method="GET" style="display: inline;" >
-            <button class = "btn btn-success btn-lg">Login</button></form><form action="/register" method="GET" style="display: inline;" >
-              <button class = "btn btn-success btn-lg">Register</button></form>
-        </div>
+        <div style="padding-left: 10px; font-size:23px;">
+            
+           
+              <%     if(btns.btns[0]==='/notes'){ %>
+                <form action="/notes" method="GET" style="display: inline;" > 
+                 <button class = "btn btn-success btn-lg">Back to Notes</button></form>
+              <%    }else{ %>
+                  <form action="/login" method="GET" style="display: inline;" > 
+                      <button class = "btn btn-success btn-lg">Login</button></form><form action="/register" method="GET" style="display: inline;" > 
+                               <button class = "btn btn-success btn-lg">Register</button> 
+                        </form>
+                  <% } %>
+        
+            </div>
         
         </div>
     </div>

@@ -73,7 +73,12 @@ app.use((req,res,next)=>{
 })
 
 app.get('/', (req, res) => {
-    res.redirect('/login');
+    if(req.user){
+        res.redirect('/notes');
+    }
+    else{
+        res.redirect('/login');
+    }
     // console.log(req.session.passport);
     // console.log(req.session);
 })
@@ -83,17 +88,28 @@ app.get('/register', (req,res)=>{
     //     res.redirect('/notes');
     // }
     // else{
+    if(!req.user){
         res.render('register');
+    }
+    else{
+        res.redirect('/notes');
+    }
     // }
 })
 
 app.get('/login', (req,res)=>{
-    console.log(req.session.passport);
+    
+    console.log("login",req.user);
     // if(req.session.passport){
     //     res.redirect('/notes');
     // }
     // else{
+    if(!req.user){
         res.render('login');
+    }
+    else{
+        res.redirect('/notes');
+    }
     // }
 })
 
@@ -105,39 +121,67 @@ app.post('/register',async (req,res, next)=>{
         const registeredUser = await User.register(user, password);
         console.log(registeredUser);
         req.login(registeredUser, err => {
-            if(err) return next(err);
+            if(err)  return next(err);
             req.flash('success', 'Registered !');
             res.redirect('/notes');
         })
     }
     catch(e){
-        req.flash('success',e.message);
+        // if())
+        console.log(e.message.slice(0,6));
+        if(e.message.slice(0,6)=='E11000'){
+        req.flash('success','Email already in use !');
         res.redirect('register');
+        }
+        else{
+            req.flash('success','Username taken ! Try using a different username.');
+            res.redirect('register');
+        }
     }
 })
 
 app.post('/login',passport.authenticate('local', {failureFlash:true,failureRedirect:'/login'}),(req,res)=>{
     req.flash('success','Signed in');
-    // console.log(req.user);
+    console.log("login",req.user);
     // console.log(req.session.passport);
     res.redirect('/notes');
 })
 
 app.use('/notes', userRoutes);
 
-app.get('/logout', (req,res)=>{
-    req.logout();
-    req.flash('success', 'Logged out');
-    res.redirect('login');
-})
 
 
 app.get('/aboutus', (req, res) => {
-    res.render('aboutus');
+    // res.render('aboutus');
+
+    if(req.user){
+        const btns = {btns:['/notes']};
+        console.log(btns);
+
+        res.render('aboutus',{btns:btns});
+    }
+    else{
+        const btns = {btns:['/login', '/register']};
+        console.log(btns);
+
+        res.render('aboutus',{btns:btns});
+    }
 })
 
 
 
 app.get('/*', (req, res) => {
-    res.render('homeInvalidURL');
+    
+    if(req.user){
+        const btns = {btns:['/notes']};
+        console.log(btns);
+
+        res.render('homeInvalidURL',{btns:btns});
+    }
+    else{
+        const btns = {btns:['/login', '/register']};
+        console.log(btns);
+
+        res.render('homeInvalidURL',{btns:btns});
+    }
 })

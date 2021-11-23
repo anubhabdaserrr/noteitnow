@@ -24,22 +24,25 @@ function getDateAndTime(){
   }
 
 router.get('/', isLoggedIn, async (req, res) => {
-    const notes = await Note.find({});
+    console.log("refresh notes",req.user);
+    const notes = await Note.find({ 'userId': req.user._id });
     res.render('home',{data:notes});
 })
 
 router.get('/search', isLoggedIn, async (req, res) => {
-    const notes = await Note.find({});
+    const notes = await Note.find({ 'userId': req.user._id });
     let sortedNotes = sortNotesObj(notes, req.query.searchQuery).slice().reverse();
     res.render('home',{data:sortedNotes});
 })
 
+//associated
 router.patch('/:id', isLoggedIn, async (req,res) => {
     const {id} = req.params;
     const note = {
         title: req.body.noteTitle,
         content: req.body.noteContent,
-        dateModified: getDateAndTime()
+        dateModified: getDateAndTime(),
+        userId: req.user._id
     };
     const editedNote = await Note.findByIdAndUpdate(id, note, {runValidators: true, new: true});
     req.flash('success','Note updated');
@@ -47,13 +50,14 @@ router.patch('/:id', isLoggedIn, async (req,res) => {
 })
 
 
-
+//associated
 router.post('/new', isLoggedIn, async (req,res)=> {
     const {noteTitle, noteContent, button} = req.body;
     const newNote = new Note({
         title : noteTitle,
         content : noteContent,
-        dateModified: getDateAndTime()
+        dateModified: getDateAndTime(),
+        userId: req.user._id
     });
     await newNote.save()
     req.flash('success','Note saved');
@@ -62,6 +66,7 @@ router.post('/new', isLoggedIn, async (req,res)=> {
 
 })
 
+//associated
 router.delete('/:id', isLoggedIn, async (req, res) =>{
     const {id} = req.params;
     const deletedNote = await Note.findByIdAndDelete(id);
@@ -77,5 +82,30 @@ router.get('/aboutus', isLoggedIn, (req, res) => {
     res.redirect('/aboutus');
 })
 
+
+router.get('/logout', (req,res)=>{
+
+    console.log("Logout",req.user);
+    req.logout();
+    console.log("Logout",req.user);
+    req.flash('success', 'Logged out');
+    res.redirect('/login');
+})
+
+router.get('/*', (req, res) => {
+    
+    if(req.user){
+        const btns = {btns:['/notes']};
+        console.log(btns);
+
+        res.render('homeInvalidURL',{btns:btns});
+    }
+    else{
+        const btns = {btns:['/login', '/register']};
+        console.log(btns);
+
+        res.render('homeInvalidURL',{btns:btns});
+    }
+})
 
 module.exports = router;
