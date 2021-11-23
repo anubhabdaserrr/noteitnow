@@ -1,0 +1,30 @@
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <form id="note-form" action="/notes/new" method="POST" > <!--target="/">-->
+          <input type="text" id="edit-title" name="noteTitle" autocomplete="off" ><br>
+          <input type="hidden" id = "note-id" name="noteId">
+          Date Modified :<span id="note-date"> 24/07/2021</span><br>
+      </form>
+      </div>
+      <div class="modal-body"> 
+          <textarea form="note-form" id="note-content" name="noteContent" rows=10 cols=47></textarea><br>
+          
+      </div>
+      <div class="modal-footer">
+          <div id="buttons">
+          <button form="note-form" id="save-note" type="submit" name="save">Save</button>
+          <button form="note-form" id="delete-note" type="submit" name="delete">Delete Note</button>
+          </span>
+    </div>
+  
+  </div>
+    <script src=js/scripts.js></script>
+</body>
+</html> 
+<!-- formaction="/notes/<%= data.notes[0]._id %>?_method=DELETE"  -->
