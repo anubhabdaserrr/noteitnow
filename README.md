@@ -1,6 +1,8 @@
 # NoteItNow
 An online note-taking app made using Express & MongoDB for logged-in users to create, delete, view, modify & search through their notes.
 
+(Project made, as a part of hands-on-assessment for skills learned in training for Semester 7)
+
 ## Home Page
 ![](/Snapshots_v0.4/HomePage.gif)
 
